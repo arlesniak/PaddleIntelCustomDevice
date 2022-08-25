@@ -27,11 +27,13 @@ void FullValue(const phi::Context& dev_ctx,
   void* stream = static_cast<void*>(dev_ctx.stream());
   auto* q =  static_cast<sycl::queue*>(stream);
   auto ile = tensor->numel();
+  std::cout << "custom_intel FullValue size="<< ile << std::endl;
+
   T* gpu_mem = sycl::malloc_device<T>(ile, *q);
 
   q->submit([&](sycl::handler& h) {
     h.parallel_for(ile, [=](auto& i){           
-        gpu_mem[i] = val;
+//        gpu_mem[i] = val;
     });
   });
   q-> wait();  

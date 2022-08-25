@@ -167,7 +167,7 @@ C_Status DeviceMemStats(const C_Device device,
   *total_memory = *total_memory * 1024;
   *free_memory = *free_memory * 1024;
   *free_memory = *free_memory * MEMORY_FRACTION;
-
+  std::cout << "DeviceMemStats MemTotal=" << *total_memory << std::endl;
   return C_SUCCESS;
 }
 

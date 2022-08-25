@@ -89,11 +89,13 @@ C_Status AsyncMemCpyP2P(const C_Device dst_device,
   memcpy(dst, src, size);
   return C_SUCCESS;
 }
+#define show(x) std::cout << "[SHOW]: " <<  x << std::endl;
 
 C_Status Allocate(const C_Device device, void **ptr, size_t size) {
   auto data = malloc(size);
   if (data) {
     *ptr = data;
+    show("Allocate " << size << "bytes  ptr="<< ptr);
     return C_SUCCESS;
   } else {
     *ptr = nullptr;
